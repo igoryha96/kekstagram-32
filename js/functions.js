@@ -1,8 +1,24 @@
-function lengthString (string, length) {
-  if (string <= length) {
+function lengthString (string, maxLength) {
+  if (string <= maxLength) {
     return true;
   } else {
     return false;
   }
 }
-lengthString('Бомж', 10);
+
+lengthString('вперед и вверх', 20);
+
+const isPalindrome = (originString) => {
+  const normalizeText = originString
+    .replaceAll(' ', '')
+    .toLowerCase();
+  const reverseNormolizerText = normalizeText
+    .split('')
+    .reverse()
+    .join('');
+  return normalizeText === reverseNormolizerText;
+};
+
+isPalindrome('топот');
+isPalindrome('Лёша на полке клопа нашёл ');
+
