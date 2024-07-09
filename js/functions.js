@@ -6,7 +6,6 @@ function lengthString(string, maxLength) {
 }
 
 lengthString('вперед и вверх', 20);
-console.log(lengthString('вперед и вверх', 20));
 
 const isPalindrome = (originString) => {
   const normalizeText = originString
