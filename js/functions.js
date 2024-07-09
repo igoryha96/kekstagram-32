@@ -1,12 +1,12 @@
-function lengthString (string, maxLength) {
+function lengthString(string, maxLength) {
   if (string <= maxLength) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 lengthString('вперед и вверх', 20);
+console.log(lengthString('вперед и вверх', 20));
 
 const isPalindrome = (originString) => {
   const normalizeText = originString
@@ -21,4 +21,3 @@ const isPalindrome = (originString) => {
 
 isPalindrome('топот');
 isPalindrome('Лёша на полке клопа нашёл ');
-
