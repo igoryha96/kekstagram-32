@@ -1,19 +1,25 @@
 const counUsers = 25;
 
-const userId = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+const userId = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
 
 const coments = ['Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const userName = ['Александр, Мария, Иван, Анастасия, Дмитрий, Елена, Николай, Ольга, Артем, Екатерина, Владимир, Светлана, Павел, Татьяна, Сергей, Наталья, Алексей, Людмила, Андрей, Анна, Максим, Юлия, Ирина, Василий, Оксана'];
+const userName = ['Александр', 'Мария', 'Иван', 'Анастасия', 'Дмитрий', 'Елена', 'Николай', 'Ольга', 'Артем', 'Екатерина', 'Владимир', 'Светлана', 'Павел', 'Татьяна', 'Сергей', 'Наталья', 'Алексей', 'Людмила', 'Андрей', 'Анна', 'Максим', 'Юлия', 'Ирина', 'Василий', 'Оксана'];
+
+const likes = [];
+
+for (let i = 1; i <= 200; i++) {
+  likes.push(i);
+};
 
 
-function getRandomInteger (min, max) {
+function getRandomInteger(min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
@@ -21,13 +27,12 @@ function getRandomInteger (min, max) {
   return Math.floor(result);
 }
 
-function createRandomIdFromRangeGenerator (min, max) {
+function createRandomIdFromRangeGenerator(min, max) {
   const previousValues = [];
 
   return function () {
     let currentValue = getRandomInteger(min, max);
     if (previousValues.length >= (max - min + 1)) {
-      console.error(`Перебраны все числа из диапазона от ${ min } до ${ max}`);
       return null;
     }
     while (previousValues.includes(currentValue)) {
@@ -38,19 +43,31 @@ function createRandomIdFromRangeGenerator (min, max) {
   };
 }
 
-const getRandomArrayElement = (elements) => elements[createRandomIdFromRangeGenerator(0, elements.length - 1)];
+const as = createRandomIdFromRangeGenerator(1, 25);
+// console.log(as());
+
+const userIndex = createRandomIdFromRangeGenerator(0, userId.length - 1);
+
+console.log(userIndex());
+
+console.log(userId[userIndex]);
+console.log(userId[1]);
+
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
+// console.log(getRandomArrayElement(likes));
 
 const createWizard = () => ({
   id: getRandomArrayElement(userId),
-  url: `photos/${ getRandomArrayElement(userId) }.jpg` ,
-  description: `Прекрасное фото №${ getRandomArrayElement(userId)}`,
-  message:getRandomArrayElement(coments),
-  name: `${getRandomArrayElement(userName) }`,
+  url: `photos/${getRandomArrayElement(userId)}.jpg`,
+  description: `Прекрасное фото №${getRandomArrayElement(userId)}`,
+  likes: getRandomArrayElement(likes),
+  message: getRandomArrayElement(coments),
+  name: `${getRandomArrayElement(userName)}`,
 });
 
-console.log(createWizard());
+// console.log(createWizard());
 
 // const similarWizards = Array.from({length: counUsers}, createWizard);
 
 // console.log(similarWizards);
-
