@@ -1,8 +1,7 @@
-const counUsers = 25;
-
 const userId = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
 
-const coments = ['Всё отлично!',
+const coments = [
+  'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
@@ -43,21 +42,9 @@ function createRandomIdFromRangeGenerator(min, max) {
   };
 }
 
-const as = createRandomIdFromRangeGenerator(1, 25);
-// console.log(as());
-
-const userIndex = createRandomIdFromRangeGenerator(0, userId.length - 1);
-
-console.log(userIndex());
-
-console.log(userId[userIndex]);
-console.log(userId[1]);
-
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-// console.log(getRandomArrayElement(likes));
-
-const createWizard = () => ({
+const createObjectPhoto = () => ({
   id: getRandomArrayElement(userId),
   url: `photos/${getRandomArrayElement(userId)}.jpg`,
   description: `Прекрасное фото №${getRandomArrayElement(userId)}`,
@@ -66,8 +53,9 @@ const createWizard = () => ({
   name: `${getRandomArrayElement(userName)}`,
 });
 
-// console.log(createWizard());
+objectsPhoto = [];
 
-// const similarWizards = Array.from({length: counUsers}, createWizard);
-
-// console.log(similarWizards);
+for (let i = 0; i <= 25; i++) {
+  objectsPhoto.push(createObjectPhoto());
+}
+console.log(objectsPhoto);
