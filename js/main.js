@@ -15,10 +15,10 @@ const likes = [];
 
 for (let i = 1; i <= 200; i++) {
   likes.push(i);
-};
+}
 
 
-function getRandomInteger(min, max) {
+function getRandomInteger (min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
@@ -26,12 +26,13 @@ function getRandomInteger(min, max) {
   return Math.floor(result);
 }
 
-function createRandomIdFromRangeGenerator(min, max) {
+function createRandomIdFromRangeGenerator (min, max) {
   const previousValues = [];
 
   return function () {
     let currentValue = getRandomInteger(min, max);
     if (previousValues.length >= (max - min + 1)) {
+      console.error(`Перебраны все числа из диапазона от ${ min } до ${ max}`);
       return null;
     }
     while (previousValues.includes(currentValue)) {
@@ -42,20 +43,31 @@ function createRandomIdFromRangeGenerator(min, max) {
   };
 }
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+const shiza = createRandomIdFromRangeGenerator(0, userId.length - 1);
 
-const createObjectPhoto = () => ({
-  id: getRandomArrayElement(userId),
-  url: `photos/${getRandomArrayElement(userId)}.jpg`,
-  description: `Прекрасное фото №${getRandomArrayElement(userId)}`,
-  likes: getRandomArrayElement(likes),
-  message: getRandomArrayElement(coments),
-  name: `${getRandomArrayElement(userName)}`,
-});
 
-objectsPhoto = [];
+const getRandomUnicalInteger = (nameMassive) => {
+  const index = createRandomIdFromRangeGenerator(0, nameMassive.length - 1);
+  return nameMassive[index()];
+};
 
-for (let i = 0; i <= 25; i++) {
-  objectsPhoto.push(createObjectPhoto());
+for (let i = 0; i <= 24; i++) {
+  console.log(getRandomUnicalInteger(userId));
 }
-console.log(objectsPhoto);
+
+
+// const createObjectPhoto = () => ({
+//   id: getRandomUnicalInteger(userId),
+//   url: `photos/${getRandomUnicalInteger(userId)}.jpg`,
+//   description: `Прекрасное фото №${getRandomUnicalInteger(userId)}`,
+//   likes: getRandomUnicalInteger(likes),
+//   message: getRandomUnicalInteger(coments),
+//   name: `${getRandomUnicalInteger(userName)}`,
+// });
+
+// objectsPhoto = [];
+
+// for (let i = 0; i <= 25; i++) {
+//   objectsPhoto.push(createObjectPhoto());
+// }
+// console.log(objectsPhoto);
