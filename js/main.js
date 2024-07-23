@@ -7,7 +7,7 @@ const COMMENTS = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const userName = ['Александр', 'Мария', 'Иван', 'Анастасия', 'Дмитрий', 'Елена', 'Николай', 'Ольга', 'Артем', 'Екатерина', 'Владимир', 'Светлана', 'Павел', 'Татьяна', 'Сергей', 'Наталья', 'Алексей', 'Людмила', 'Андрей', 'Анна', 'Максим', 'Юлия', 'Ирина', 'Василий', 'Оксана'];
+const USER_NAME = ['Александр', 'Мария', 'Иван', 'Анастасия', 'Дмитрий', 'Елена', 'Николай', 'Ольга', 'Артем', 'Екатерина', 'Владимир', 'Светлана', 'Павел', 'Татьяна', 'Сергей', 'Наталья', 'Алексей', 'Людмила', 'Андрей', 'Анна', 'Максим', 'Юлия', 'Ирина', 'Василий', 'Оксана'];
 
 //функция возвращает случайное число
 function getRandomInteger (min, max) {
@@ -53,7 +53,7 @@ const generateComent = () => ({
   id:counIdComments(),
   avatar: `img/avatar-${getRandomInteger(0,6)}.svg`,
   message: COMMENTS[getRandomInteger(0, COMMENTS.length - 1)],
-  name: userName[getRandomInteger(0, userName.length - 1)]
+  name: USER_NAME[getRandomInteger(0, USER_NAME.length - 1)]
 });
 
 const genegateComments = () => {
@@ -69,8 +69,8 @@ const createObjectPhoto = () => ({
   comments: genegateComments()
 });
 
-const objectsPhoto = [];
+const OBJECTS_PHOTO = [];
 
 for (let i = 0; i <= 24; i++) {
-  objectsPhoto.push(createObjectPhoto());
+  OBJECTS_PHOTO.push(createObjectPhoto());
 }
