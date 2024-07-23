@@ -46,7 +46,7 @@ function createIdGenerator () {
 const generatePhotoId = createIdGenerator();
 const generateUserId = createIdGenerator();
 
-const counIdComments = createRandomIdFromRangeGenerator (1, 135);
+const counIdComments = createRandomIdFromRangeGenerator (1, 1000);
 
 //функция генерирует случайное кол-во коментариев
 const generateComent = () => ({
@@ -74,3 +74,5 @@ const OBJECTS_PHOTO = [];
 for (let i = 0; i <= 24; i++) {
   OBJECTS_PHOTO.push(createObjectPhoto());
 }
+
+console.log(OBJECTS_PHOTO);
