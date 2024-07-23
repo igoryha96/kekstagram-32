@@ -74,5 +74,3 @@ const OBJECTS_PHOTO = [];
 for (let i = 0; i <= 24; i++) {
   OBJECTS_PHOTO.push(createObjectPhoto());
 }
-
-console.log(OBJECTS_PHOTO);
