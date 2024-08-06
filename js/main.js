@@ -10,7 +10,7 @@ const COMMENTS = [
 const USER_NAME = ['Александр', 'Мария', 'Иван', 'Анастасия', 'Дмитрий', 'Елена', 'Николай', 'Ольга', 'Артем', 'Екатерина', 'Владимир', 'Светлана', 'Павел', 'Татьяна', 'Сергей', 'Наталья', 'Алексей', 'Людмила', 'Андрей', 'Анна', 'Максим', 'Юлия', 'Ирина', 'Василий', 'Оксана'];
 
 //функция возвращает случайное число
-function getRandomInteger (min, max) {
+function getRandomInteger(min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
@@ -18,7 +18,7 @@ function getRandomInteger (min, max) {
   return Math.floor(result);
 }
 //функция возвращает случайное УНИКАЛЬНОЕ число
-function createRandomIdFromRangeGenerator (min, max) {
+function createRandomIdFromRangeGenerator(min, max) {
   const previousValues = [];
 
   return function () {
@@ -34,7 +34,7 @@ function createRandomIdFromRangeGenerator (min, max) {
   };
 }
 //функция увеличивает счетчик на +1 с каждой итерацией
-function createIdGenerator () {
+function createIdGenerator() {
   let lastGeneratedId = 0;
 
   return function () {
@@ -43,29 +43,29 @@ function createIdGenerator () {
   };
 }
 
-const generatePhotoId = createIdGenerator();
-const generateUserId = createIdGenerator();
+const generationPhotoId = createIdGenerator();
+const generationUserId = createIdGenerator();
 
-const counIdComments = createRandomIdFromRangeGenerator (1, 1000);
+const countIdComments = createRandomIdFromRangeGenerator(1, 1000);
 
 //функция генерирует случайное кол-во коментариев
-const generateComent = () => ({
-  id:counIdComments(),
-  avatar: `img/avatar-${getRandomInteger(0,6)}.svg`,
+const generationComment = () => ({
+  id: countIdComments(),
+  avatar: `img/avatar-${getRandomInteger(0, 6)}.svg`,
   message: COMMENTS[getRandomInteger(0, COMMENTS.length - 1)],
   name: USER_NAME[getRandomInteger(0, USER_NAME.length - 1)]
 });
 
 const genegateComments = () => {
-  const countComments = getRandomInteger(0,30);
-  return Array.from({length: countComments }, generateComent);
+  const countComments = getRandomInteger(0, 30);
+  return Array.from({ length: countComments }, generationComment);
 };
 
 const createObjectPhoto = () => ({
-  photoId: generateUserId(),
-  url: `photos/${generatePhotoId()}.jpg`,
-  description: `Прекрасное фото №${getRandomInteger(0,25)}`,
-  likes: getRandomInteger(0,200),
+  photoId: generationUserId(),
+  url: `photos/${generationPhotoId()}.jpg`,
+  description: `Прекрасное фото №${getRandomInteger(0, 25)}`,
+  likes: getRandomInteger(0, 200),
   comments: genegateComments()
 });
 
