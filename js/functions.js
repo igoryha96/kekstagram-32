@@ -35,7 +35,6 @@ const getResultTime = (timeStart, timeEnd, timeStartMeeting, timeMeeting) => {
   const timeStartToMinutes = getMinutesOfHour(timeStart);
   const timeEndToMinutes = getMinutesOfHour(timeEnd);
   const timeStartMeetingToMinutes = getMinutesOfHour(timeStartMeeting);
-  const timeMeetingToMinutes = getMinutesOfHour(timeMeeting);
 
   const timeWork = (timeStartMeetingToMinutes - timeEndToMinutes);
 
@@ -43,7 +42,7 @@ const getResultTime = (timeStart, timeEnd, timeStartMeeting, timeMeeting) => {
     false
   };
 
-  if (timeWork >= timeMeetingToMinutes) {
+  if (timeWork >= timeMeeting) {
     true
   }
 }
