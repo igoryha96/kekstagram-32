@@ -1,2 +1,4 @@
 import { generateArrayPhoto } from './data.js';
-generateArrayPhoto();
+import { generationThumbnails } from './thumbnail.js';
+
+generationThumbnails(generateArrayPhoto());
