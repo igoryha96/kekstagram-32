@@ -17,6 +17,7 @@ const USER_NAME = ['Александр', 'Мария', 'Иван', 'Анаста
 
 const generationPhotoId = createIdGenerator();
 const generationUserId = createIdGenerator();
+const generatiDescription = createIdGenerator();
 
 const countIdComments = createRandomIdFromRangeGenerator(1, 1000);
 
@@ -36,10 +37,21 @@ const generationComments = () => {
 const createObjectPhoto = () => ({
   photoId: generationUserId(),
   url: `photos/${generationPhotoId()}.jpg`,
-  description: `Прекрасное фото №${getRandomInteger(0, 25)}`,
+  description: `Прекрасное фото №${generatiDescription()}`,
   likes: getRandomInteger(0, 200),
   comments: generationComments()
 });
 
-const generateArrayPhoto = () => Array.from({ length: 25 }, createObjectPhoto);
+
+
+// const generateArrayPhoto = () => Array.from({ length: 25 }, createObjectPhoto);
+const generateArrayPhoto = () => {
+  let arr = [];
+  for (let i = 0; i < 26; i++) {
+
+    arr.push(createObjectPhoto())
+  };
+  return arr;
+};
+
 export { generateArrayPhoto };

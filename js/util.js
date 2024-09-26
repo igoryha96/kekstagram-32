@@ -27,7 +27,7 @@ function createIdGenerator() {
   let lastGeneratedId = 0;
 
   return function () {
-    lastGeneratedId += 1;
+    lastGeneratedId++;
     return lastGeneratedId;
   };
 }
